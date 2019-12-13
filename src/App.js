@@ -1,47 +1,44 @@
-import React, { Component } from "react";
-import "./App.css";
-import { Router } from "@reach/router";
-import Navigation from "./components/Navigation";
-import Footer from "./components/Footer";
-import Home from "./components/Home";
-import Families from "./components/Families";
-import Genera from "./components/Genera";
-import Species from "./components/Species";
-import IndividualSpecies from "./components/IndividualSpecies";
-import WR93 from "./data/WR93.json";
+import React, { Component } from 'react';
+import './App.css';
+import { Router } from '@reach/router';
+import Footer from './components/Footer';
+import Home from './components/Home';
+import Families from './components/Families';
+import Genera from './components/Genera';
+import Species from './components/Species';
+import IndividualSpecies from './components/IndividualSpecies';
+import WR93 from './data/WR93.json';
 
 class App extends Component {
   state = {};
   render() {
     return (
-      <div className="App">
-        <Navigation />
-
+      <div className='App'>
         <main>
           <Router>
             <Home
-              path="/"
+              path='/'
               allData={WR93}
-              leveltaxa={this.getTaxa("MSW93_Order")}
+              orders={this.getTaxa('MSW93_Order', WR93)}
             />
             <Families
-              path="/:order_name"
+              path='/:order_name'
               allData={WR93}
-              leveltaxa={this.getTaxa("MSW93_Family")}
+              getTaxa={this.getTaxa}
             />
             <Genera
-              path="/:order_name/:family_name"
+              path='/:order_name/:family_name'
               allData={WR93}
-              leveltaxa={this.getTaxa("MSW93_Genus")}
+              getTaxa={this.getTaxa}
             />
             <Species
-              path="/:order_name/:family_name/:genera_name"
+              path='/:order_name/:family_name/:genus_name'
               allData={WR93}
-              leveltaxa={this.getTaxa("MSW93_Binomial")}
+              getTaxa={this.getTaxa}
               convertBinomial={this.convertBinomial}
             />
             <IndividualSpecies
-              path="/:order_name/:family_name/:genera_name/:binomial"
+              path='/:order_name/:family_name/:genera_name/:binomial'
               allData={WR93}
               getSpeciesData={this.getSpeciesData}
               convertBinomial={this.convertBinomial}
@@ -65,27 +62,31 @@ class App extends Component {
   //   });
   // };
 
-  getTaxa = level => {
+  getTaxa = (level, dataArray) => {
     const result = [];
     const map = new Map();
-    for (const item of WR93) {
+    for (const item of dataArray) {
       if (!map.has(item[level])) {
         map.set(item[level], true);
         result.push({
           classification: item[level],
-          id: item["MSW93_Binomial"],
+          id: item['MSW93_Binomial'],
         });
       }
     }
     return result;
   };
 
-  convertBinomial = binomialWithSpace => {
-    return binomialWithSpace.replace(" ", "_");
+  convertBinomial = (binomial, convertToUnderscore) => {
+    if (convertToUnderscore) {
+      return binomial.replace(' ', '_');
+    } else {
+      return binomial.replace('_', ' ');
+    }
   };
 
   getSpeciesData = binomial => {
-    return WR93.filter(species => species["MSW93_Binomial"] === binomial);
+    return WR93.filter(species => species['MSW93_Binomial'] === binomial);
   };
 }
 

@@ -1,46 +1,53 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import Navigation from './Navigation';
 
 class IndividualSpecies extends Component {
-  state = {};
+  state = {
+    data: [],
+    species: '',
+  };
   render() {
     return (
-      <div>
-        <table>
-          <tbody>
-            <tr>
-              <th>label</th>
-              <th>data</th>
-            </tr>
-            {this.createTable()}
-          </tbody>
-        </table>
-      </div>
+      <React.Fragment>
+        <Navigation />
+        <div className='content-container'>
+          <h1>{this.state.species}</h1>
+          <table>
+            <tbody>{this.createTable()}</tbody>
+          </table>
+        </div>
+      </React.Fragment>
     );
+  }
+
+  createTable = () => {
+    const { data } = this.state;
+    let speciesData = data[0];
+    let table = [];
+    for (let key in speciesData) {
+      table.push(
+        <tr key={key}>
+          <td>{key}</td>
+          <td>{speciesData[key]}</td>
+        </tr>,
+      );
+    }
+    return table;
+  };
+
+  componentDidMount() {
+    this.getThatData();
   }
 
   getThatData = () => {
     const { getSpeciesData, binomial, convertBinomial } = this.props;
-    const convertedBinomial = convertBinomial(binomial);
-    getSpeciesData(binomial).then(data => {
-      this.setState({
-        binomial: binomial,
-        data: data,
-      });
+    const convertedBinomial = convertBinomial(binomial, false);
+    const speciesData = getSpeciesData(convertedBinomial);
+    this.setState({
+      data: speciesData,
+      species: convertedBinomial,
     });
-  };
-
-  createTable = () => {
-    const { data } = this.state;
-    let table = [];
-    for (let key in data) {
-      table.push(
-        <tr key={key}>
-          <td>{key}</td>
-          <td>{data[key]}</td>
-        </tr>
-      );
-    }
-    return table;
+    this.createTable();
   };
 }
 

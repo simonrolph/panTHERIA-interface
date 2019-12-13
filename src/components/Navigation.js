@@ -1,11 +1,13 @@
-import React from "react";
-import { Link } from "@reach/router";
-import "../App.css";
+import React from 'react';
+import { Link } from '@reach/router';
+import '../App.css';
 
-const Navigation = () => {
+const Navigation = props => {
   return (
     <nav>
-      <Link to="/">Home</Link>
+      <div className='nav-links'>
+        <Link to='/'>Home</Link>
+      </div>
     </nav>
   );
 };
