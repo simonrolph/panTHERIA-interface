@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
-import Navigation from './Navigation';
+import React, { Component } from "react";
+import Navigation from "./Navigation";
+import Breadcrumb from "./Breadcrumb";
 
 class IndividualSpecies extends Component {
   state = {
     data: [],
-    species: '',
+    species: "",
   };
   render() {
     return (
       <React.Fragment>
         <Navigation />
-        <div className='content-container'>
+        <Breadcrumb
+          dataArray={this.state.data}
+          binomial={this.props.binomial}
+        />
+        <div className="content-container">
           <h1>{this.state.species}</h1>
           <table>
             <tbody>{this.createTable()}</tbody>
@@ -28,8 +33,8 @@ class IndividualSpecies extends Component {
       table.push(
         <tr key={key}>
           <td>{key}</td>
-          <td>{speciesData[key]}</td>
-        </tr>,
+          <td>{speciesData[key] === -999 ? "Unknown" : speciesData[key]} </td>
+        </tr>
       );
     }
     return table;
