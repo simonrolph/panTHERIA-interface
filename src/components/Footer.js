@@ -13,14 +13,22 @@ const Footer = () => {
         </p>
         <p>
           This application was created by{" "}
-          <a href="http://simon-rolph.com/" target="_blank">
+          <a
+            href="http://simon-rolph.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Simon Rolph
           </a>{" "}
           <span role="img" aria-label="tram emoji">
             🚋
           </span>
           &{" "}
-          <a href="https://natalieclamp.com/" target="_blank">
+          <a
+            href="https://natalieclamp.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Natalie Clamp
           </a>
           <span role="img" aria-label="dinosaur emoji">

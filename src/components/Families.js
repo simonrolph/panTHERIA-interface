@@ -1,23 +1,31 @@
-import React, { Component } from 'react';
-import { Link } from '@reach/router';
-import Navigation from './Navigation';
+import React, { Component } from "react";
+import { Link } from "@reach/router";
+import Navigation from "./Navigation";
+import Breadcrumb from "./Breadcrumb";
 
 class Families extends Component {
   state = {
     data: [],
   };
   render() {
+    const { order_name, family_name } = this.props;
+    const { data } = this.state;
     return (
       <React.Fragment>
         <Navigation />
-        <div className='content-container'>
-          <h1>Families in {this.props.order_name}</h1>
+        <Breadcrumb
+          dataArray={data}
+          order_name={order_name}
+          family_name={family_name}
+        />
+        <div className="content-container">
+          <h1>Families in {order_name}</h1>
           <ul>
-            {this.state.data.map(animal => {
+            {data.map(animal => {
               return (
-                <li key={animal['id']}>
-                  <Link to={`${animal['classification']}`}>
-                    {animal['classification']}
+                <li key={animal["id"]}>
+                  <Link to={`${animal["classification"]}`}>
+                    {animal["classification"]}
                   </Link>
                 </li>
               );
@@ -35,9 +43,9 @@ class Families extends Component {
   getFamilies = () => {
     const { allData, getTaxa, order_name } = this.props;
     const familiesInOrder = allData.filter(taxa => {
-      return taxa['MSW93_Order'] === order_name;
+      return taxa["MSW93_Order"] === order_name;
     });
-    const uniqueFamilies = getTaxa('MSW93_Family', familiesInOrder);
+    const uniqueFamilies = getTaxa("MSW93_Family", familiesInOrder);
     this.setState({ data: uniqueFamilies });
   };
 }

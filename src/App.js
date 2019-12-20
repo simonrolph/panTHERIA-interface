@@ -40,7 +40,7 @@ class App extends Component {
               convertBinomial={this.convertBinomial}
             />
             <IndividualSpecies
-              path="/:order_name/:family_name/:genera_name/:binomial"
+              path="/:order_name/:family_name/:genus_name/:binomial"
               allData={WR93}
               getSpeciesData={this.getSpeciesData}
               convertBinomial={this.convertBinomial}
@@ -52,17 +52,6 @@ class App extends Component {
       </div>
     );
   }
-
-  // chooseOrder = chosenOrder => {
-  //   const animalsInChosenOrder = WR93.filter(animal => {
-  //     return animal["MSW93_Order"] === chosenOrder;
-  //   });
-
-  //   this.setState({
-  //     animalsInChosenOrder: animalsInChosenOrder,
-  //     chosenOrder: chosenOrder,
-  //   });
-  // };
 
   getTaxa = (level, dataArray) => {
     const result = [];

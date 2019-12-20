@@ -8,15 +8,21 @@ class IndividualSpecies extends Component {
     species: "",
   };
   render() {
+    const { data, species } = this.state;
+    const { order_name, family_name, genus_name, binomial } = this.props;
     return (
       <React.Fragment>
         <Navigation />
         <Breadcrumb
-          dataArray={this.state.data}
-          binomial={this.props.binomial}
+          dataArray={data}
+          binomial={binomial}
+          order_name={order_name}
+          family_name={family_name}
+          genus_name={genus_name}
+          species={species}
         />
         <div className="content-container">
-          <h1>{this.state.species}</h1>
+          <h1>{species}</h1>
           <table>
             <tbody>{this.createTable()}</tbody>
           </table>

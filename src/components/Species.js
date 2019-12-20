@@ -1,25 +1,32 @@
-import React, { Component } from 'react';
-import { Link } from '@reach/router';
-import Navigation from './Navigation';
+import React, { Component } from "react";
+import { Link } from "@reach/router";
+import Navigation from "./Navigation";
+import Breadcrumb from "./Breadcrumb";
 
 class Species extends Component {
   state = {
     data: [],
   };
   render() {
+    const { order_name, family_name, genus_name, convertBinomial } = this.props;
+    const { data } = this.state;
     return (
       <React.Fragment>
         <Navigation />
-        <div className='content-container'>
-          <h1>Species in {this.props.genus_name}</h1>
+        <Breadcrumb
+          dataArray={data}
+          order_name={order_name}
+          family_name={family_name}
+          genus_name={genus_name}
+        />
+        <div className="content-container">
+          <h1>Species in {genus_name}</h1>
           <ul>
             {this.state.data.map(animal => {
               return (
-                <li key={animal['id']}>
-                  <Link
-                    to={`${this.props.convertBinomial(animal['id'], true)}`}
-                  >
-                    {animal['id']}
+                <li key={animal["id"]}>
+                  <Link to={`${convertBinomial(animal["id"], true)}`}>
+                    {animal["id"]}
                   </Link>
                 </li>
               );
@@ -37,9 +44,9 @@ class Species extends Component {
   getSpecies = () => {
     const { allData, getTaxa, genus_name } = this.props;
     const speciesInGenus = allData.filter(taxa => {
-      return taxa['MSW93_Genus'] === genus_name;
+      return taxa["MSW93_Genus"] === genus_name;
     });
-    const uniqueSpecies = getTaxa('MSW93_Species', speciesInGenus);
+    const uniqueSpecies = getTaxa("MSW93_Species", speciesInGenus);
     this.setState({ data: uniqueSpecies });
   };
 }
