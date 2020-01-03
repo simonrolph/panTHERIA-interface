@@ -1,6 +1,6 @@
 # panTHERIA-interface
 
-data: http://esapubs.org/archive/ecol/E096/269
+data: http://esapubs.org/archive/ecol/E090/184/
 
 Make pages for every species and datavis things
 
