@@ -43,9 +43,9 @@ class Genera extends Component {
   getGenera = () => {
     const { allData, getTaxa, family_name } = this.props;
     const generaInFamily = allData.filter(taxa => {
-      return taxa["MSW93_Family"] === family_name;
+      return taxa["MSW05_Family"] === family_name;
     });
-    const uniqueGenera = getTaxa("MSW93_Genus", generaInFamily);
+    const uniqueGenera = getTaxa("MSW05_Genus", generaInFamily);
     this.setState({ data: uniqueGenera });
   };
 }

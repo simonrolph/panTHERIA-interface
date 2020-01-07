@@ -44,9 +44,9 @@ class Species extends Component {
   getSpecies = () => {
     const { allData, getTaxa, genus_name } = this.props;
     const speciesInGenus = allData.filter(taxa => {
-      return taxa["MSW93_Genus"] === genus_name;
+      return taxa["MSW05_Genus"] === genus_name;
     });
-    const uniqueSpecies = getTaxa("MSW93_Species", speciesInGenus);
+    const uniqueSpecies = getTaxa("MSW05_Species", speciesInGenus);
     this.setState({ data: uniqueSpecies });
   };
 }

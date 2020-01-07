@@ -5,8 +5,11 @@ const Footer = () => {
     <footer>
       <div className="footer-container">
         <p className="pantheria-ref">
-Kate E. Jones, Jon Bielby, Marcel Cardillo, Susanne A. Fritz, Justin O'Dell, C. David L. Orme, Kamran Safi, Wes Sechrest, Elizabeth H. Boakes, Chris Carbone, Christina Connolly, Michael J. Cutts, Janine K. Foster, Richard Grenyer, Michael Habib, Christopher A. Plaster, Samantha A. Price, Elizabeth A. Rigby, Janna Rist, Amber Teacher, Olaf R. P. Bininda-Emonds, John L. Gittleman, Georgina M. Mace, and Andy Purvis. 2009. PanTHERIA: a species-level database of life history, ecology, and geography of extant and recently extinct mammals. Ecology 90:2648.
-          <a href="http://esapubs.org/archive/ecol/E090/184/">DOI</a>
+          <a href="http://esapubs.org/archive/ecol/E090/184/">
+            Kate E. Jones, Jon Bielby, Marcel Cardillo, <i>et al.</i> 2009.
+            PanTHERIA: a species-level database of life history, ecology, and
+            geography of extant and recently extinct mammals. Ecology 90:2648.
+          </a>
         </p>
         <p>
           This application was created by{" "}
@@ -27,7 +30,7 @@ Kate E. Jones, Jon Bielby, Marcel Cardillo, Susanne A. Fritz, Justin O'Dell, C. 
             rel="noopener noreferrer"
           >
             Natalie Clamp
-          </a>
+          </a>{" "}
           <span role="img" aria-label="dinosaur emoji">
             🦕
           </span>

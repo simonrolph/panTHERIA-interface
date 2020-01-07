@@ -1,16 +1,24 @@
 import React from "react";
 import { Link } from "@reach/router";
-import "../App.css";
 
 const Breadcrumb = props => {
   const { order_name, family_name, genus_name, binomial, species } = props;
   return (
     <div className="content-container--breadcrumb">
       <div className="breadcrumb-inner">
+        {
+          <>
+            <Link to={`/choose-order`} className="breadcrumb-link">
+              Browse taxa
+            </Link>
+          </>
+        }
+
         {order_name && (
           <>
+            <p> > </p>
             <Link to={`/${order_name}`} className="breadcrumb-link">
-              {order_name}
+              Order: {order_name}
             </Link>
           </>
         )}
@@ -22,7 +30,7 @@ const Breadcrumb = props => {
               to={`/${order_name}/${family_name}`}
               className="breadcrumb-link"
             >
-              {family_name}
+              Family: {family_name}
             </Link>
           </>
         )}
@@ -33,7 +41,7 @@ const Breadcrumb = props => {
               to={`/${order_name}/${family_name}/${genus_name}`}
               className="breadcrumb-link"
             >
-              {genus_name}
+              Genus: {genus_name}
             </Link>
           </>
         )}
@@ -44,7 +52,7 @@ const Breadcrumb = props => {
               to={`/${order_name}/${family_name}/${genus_name}/${binomial}`}
               className="breadcrumb-link"
             >
-              {species}
+              Species: {species}
             </Link>
           </>
         )}

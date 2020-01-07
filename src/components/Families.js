@@ -43,9 +43,9 @@ class Families extends Component {
   getFamilies = () => {
     const { allData, getTaxa, order_name } = this.props;
     const familiesInOrder = allData.filter(taxa => {
-      return taxa["MSW93_Order"] === order_name;
+      return taxa["MSW05_Order"] === order_name;
     });
-    const uniqueFamilies = getTaxa("MSW93_Family", familiesInOrder);
+    const uniqueFamilies = getTaxa("MSW05_Family", familiesInOrder);
     this.setState({ data: uniqueFamilies });
   };
 }

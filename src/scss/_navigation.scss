@@ -1,0 +1,36 @@
+nav {
+  font-family: "Rubik", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #eee;
+}
+
+.nav-logo {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 700;
+  padding: 20px;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.nav-links a {
+  padding: 20px;
+  margin: 10px;
+  font-weight: 400;
+  border: white solid 2px;
+
+  &:hover {
+    background-color: white;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}

@@ -1,0 +1,15 @@
+.content-container--breadcrumb {
+  margin: auto 20px;
+  max-width: 1000px;
+}
+
+.breadcrumb-inner {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.breadcrumb-link {
+  padding: 5px 7px;
+  margin: 10px;
+}

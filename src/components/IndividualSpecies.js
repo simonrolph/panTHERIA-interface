@@ -22,7 +22,9 @@ class IndividualSpecies extends Component {
           species={species}
         />
         <div className="content-container">
-          <h1>{species}</h1>
+          <h1>
+            <i>{species}</i>
+          </h1>
           <table>
             <tbody>{this.createTable()}</tbody>
           </table>
