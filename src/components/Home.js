@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Link } from "@reach/router";
 import Navigation from "./Navigation";
 
 class Home extends Component {

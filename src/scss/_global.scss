@@ -1,6 +1,8 @@
+@import "./variables";
+
 .App {
   text-align: center;
-  font-family: "Roboto", sans-serif;
+  font-family: $font-stack;
 }
 
 a {
