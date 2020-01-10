@@ -11,7 +11,7 @@ const Footer = () => {
             geography of extant and recently extinct mammals. Ecology 90:2648.
           </a>
         </p>
-        <p>
+        <p className="footer-container__credit">
           This application was created by{" "}
           <a
             href="http://simon-rolph.com/"
@@ -22,7 +22,7 @@ const Footer = () => {
           </a>{" "}
           <span role="img" aria-label="tram emoji">
             🚋
-          </span>
+          </span>{" "}
           &{" "}
           <a
             href="https://natalieclamp.com/"
