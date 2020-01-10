@@ -5,5 +5,15 @@
 
 table {
   margin: 0 auto;
+  // max-width: 900px;
   text-align: center;
+}
+
+.dataTable__data--key {
+  width: 600px;
+  padding: 7px;
+}
+
+.dataTable__data--value {
+  width: 400px;
 }
