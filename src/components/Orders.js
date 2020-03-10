@@ -9,18 +9,20 @@ const Orders = props => {
     <React.Fragment>
       <Navigation />
       <div className="content-container">
-        <h1>Orders</h1>
-        <ul className='taxaList taxaList--orders'>
-          {orders.map(animal => {
-            return (
-              <li key={animal["id"]}>
-                <Link to={`/${animal["classification"]}`}>
-                  {animal["classification"]}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <h1 className='visuallyhidden'>Orders</h1>
+        <section className='taxaListContainer'>
+          <ul className='taxaList taxaList--orders'>
+            {orders.map(animal => {
+              return (
+                <li key={animal["id"]} className='taxaItem'>
+                  <Link to={`/${animal["classification"]}`}>
+                    {animal["classification"]} {'   '}<em className='taxaList__classificationName'>Order</em>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
       </div>
     </React.Fragment>
   );

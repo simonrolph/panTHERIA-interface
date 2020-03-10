@@ -20,18 +20,20 @@ class Species extends Component {
           genus_name={genus_name}
         />
         <div className="content-container">
-          <h1>Species in {genus_name}</h1>
-          <ul>
-            {this.state.data.map(animal => {
-              return (
-                <li key={animal["id"]}>
-                  <Link to={`${convertBinomial(animal["id"], true)}`}>
-                    {animal["id"]}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <h1 className='visuallyhidden'>Species in {genus_name}</h1>
+          <section className='taxaListContainer'>
+            <ul className='taxaList taxaList--species'>
+              {this.state.data.map(animal => {
+                return (
+                  <li key={animal["id"]} className='taxaItem'>
+                    <Link to={`${convertBinomial(animal["id"], true)}`}>
+                      {animal["id"]}{'   '}<em className='taxaList__classificationName'>Species</em>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
         </div>
       </React.Fragment>
     );

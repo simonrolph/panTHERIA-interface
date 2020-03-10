@@ -1,0 +1,25 @@
+@import "./variables";
+
+.taxaListContainer {
+  display: flex;
+  justify-content: flex-start;
+  width: 400px;
+  padding: 20px 40px;
+
+  .taxaList {
+    text-align: left;
+
+    .taxaItem {
+      padding: 7px;
+      border-bottom: solid 2px $mid-grey;
+
+      &:first-child {
+        border-top: solid 2px $mid-grey;
+      }
+    }
+  }
+}
+
+.taxaList__classificationName {
+  color: $mid-grey;
+}

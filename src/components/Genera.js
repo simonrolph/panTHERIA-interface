@@ -20,18 +20,20 @@ class Genera extends Component {
           family_name={family_name}
         />
         <div className="content-container">
-          <h1>Genera in {family_name}</h1>
-          <ul>
-            {this.state.data.map(animal => {
-              return (
-                <li key={animal["id"]}>
-                  <Link to={`${animal["classification"]}`}>
-                    {animal["classification"]}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <h1 className='visuallyhidden'>Genera in {family_name}</h1>
+          <section className='taxaListContainer'>
+            <ul className='taxaList taxaList--genera'>
+              {this.state.data.map(animal => {
+                return (
+                  <li key={animal["id"]} className='taxaItem'>
+                    <Link to={`${animal["classification"]}`}>
+                      {animal["classification"]}{'   '}<em className='taxaList__classificationName'>Genus</em>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </section>
         </div>
       </React.Fragment>
     );
