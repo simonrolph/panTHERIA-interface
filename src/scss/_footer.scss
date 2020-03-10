@@ -2,6 +2,7 @@ footer {
   background-color: #eee;
   padding: 20px 30px;
   margin: 20px 0 0 0;
+  box-shadow: 0 50vh 0 50vh $light-grey; // this gives the illusion of the footer stretching to the bottom of the viewport
 
   p {
     margin: 0;

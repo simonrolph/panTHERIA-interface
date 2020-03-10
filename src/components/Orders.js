@@ -10,7 +10,7 @@ const Orders = props => {
       <Navigation />
       <div className="content-container">
         <h1>Orders</h1>
-        <ul>
+        <ul className='taxaList taxaList--orders'>
           {orders.map(animal => {
             return (
               <li key={animal["id"]}>

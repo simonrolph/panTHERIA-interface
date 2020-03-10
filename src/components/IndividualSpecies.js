@@ -9,6 +9,7 @@ class IndividualSpecies extends Component {
     physiologyData: {},
     lifeHistoryData: {},
     geographyData: {},
+    unknownData: {},
     species: '',
     references: '',
   };
@@ -20,6 +21,7 @@ class IndividualSpecies extends Component {
       physiologyData,
       lifeHistoryData,
       geographyData,
+      unknownData
     } = this.state;
     const { order_name, family_name, genus_name, binomial } = this.props;
     return (
@@ -37,36 +39,63 @@ class IndividualSpecies extends Component {
           <h1>
             <i>{species}</i>
           </h1>
-          <table className='border-black'>
-            <tbody>{this.createTable(ecologyData)}</tbody>
-          </table>
-          <table className='border-black'>
-            <tbody>{this.createTable(physiologyData)}</tbody>
-          </table>
-          <table className='border-black'>
-            <tbody>{this.createTable(lifeHistoryData)}</tbody>
-          </table>
-          <table className='border-black'>
-            <tbody>{this.createTable(geographyData)}</tbody>
-          </table>
+          <div className='speciesData'>
+            {Object.keys(ecologyData).length !== 0 && <div className='speciesData__section'>     
+              <h2>Ecology</h2>     
+              <table>
+                <tbody>{this.createTable(ecologyData)}</tbody>
+              </table>
+            </div> }
+            { Object.keys(physiologyData).length !== 0 && <div className='speciesData__section'>          
+              <h2>Physiology</h2>     
+              <table>
+                <tbody>{this.createTable(physiologyData)}</tbody>
+              </table>
+            </div> }
+            { Object.keys(lifeHistoryData).length !== 0 && <div className='speciesData__section'>          
+              <h2>Life History</h2>     
+              <table>
+                <tbody>{this.createTable(lifeHistoryData)}</tbody>
+              </table>
+            </div> }
+            { Object.keys(geographyData).length !== 0 && <div className='speciesData__section'>          
+              <h2>Geography</h2>     
+              <table>
+                <tbody>{this.createTable(geographyData)}</tbody>
+              </table>
+            </div> }
+            { Object.keys(unknownData).length !== 0 && <div className='speciesData__section'>          
+              <h2>Not recorded</h2>     
+              <table>
+                <tbody>{this.createTable(unknownData)}</tbody>
+              </table>
+            </div> }
+          </div>
         </div>
       </React.Fragment>
     );
   }
 
   createTable = data => {
-    // const { data, ecologyData, physiologyData,  } = this.state;
     let speciesData = data;
     let table = [];
     for (let key in speciesData) {
+      if (speciesData[key] === 'Unknown') {
+        table.push(
+        <tr className='dataTable__row' key={key}>
+          <td className='dataTable__data--key'>{key}</td>
+        </tr>,
+      );
+      } else {
       table.push(
         <tr className='dataTable__row' key={key}>
           <td className='dataTable__data--key'>{key}</td>
           <td className='dataTable__data--value'>
-            {speciesData[key] === -999 ? 'Unknown' : speciesData[key]}{' '}
+            {speciesData[key]}{' '}
           </td>
         </tr>,
       );
+      }
     }
     return table;
   };
@@ -93,6 +122,10 @@ class IndividualSpecies extends Component {
     const convertedGeographyData = this.dataTranslator(
       semanticallyOrganisedData[3],
     );
+    const convertedUnknowns = this.dataTranslator(
+      semanticallyOrganisedData[4],
+    );
+
     const references = speciesData[0]['References'].split(';');
     this.setState({
       data: convertedAllData,
@@ -100,6 +133,7 @@ class IndividualSpecies extends Component {
       physiologyData: convertedPhysiologyData,
       lifeHistoryData: convertedLifeHistoryData,
       geographyData: convertedGeographyData,
+      unknownData: convertedUnknowns,
       species: convertedBinomial,
       references: references,
     });
@@ -178,10 +212,17 @@ class IndividualSpecies extends Component {
     let physiologyData = {};
     let lifeHistoryData = {};
     let geographyData = {};
+    let unknownData = {};
     for (let tag in semanticallySorted) {
       for (let i = 0; i < semanticallySorted[tag].length; i++) {
         for (let key in speciesDataObj) {
           if (semanticallySorted[tag][i] === key) {
+            console.log(semanticallySorted[tag][i])
+            console.log(speciesDataObj[key])
+            if (speciesDataObj[key] === -999) {
+              // console.log('its unknown!')
+              unknownData[key] = 'Unknown';
+            } else {
             switch (tag) {
               case 'ecology':
                 ecologyData[key] = speciesDataObj[key];
@@ -195,12 +236,15 @@ class IndividualSpecies extends Component {
               default:
                 geographyData[key] = speciesDataObj[key];
             }
+            }
           }
         }
       }
     }
-    return [ecologyData, physiologyData, lifeHistoryData, geographyData];
+    return [ecologyData, physiologyData, lifeHistoryData, geographyData, unknownData];
   };
+
+
 
   dataTranslator = speciesData => {
     const converter = {
