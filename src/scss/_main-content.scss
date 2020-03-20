@@ -1,35 +1,60 @@
 .content-container {
-  // max-width: 600px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 table {
-  margin: 0 auto;
-  // max-width: 900px;
+  margin: 20px auto;
+  max-width: 400px;
   text-align: center;
 }
 
+
 .dataTable__data--key {
-  width: 600px;
+  width: 800px;
   padding: 7px;
 }
 
 .dataTable__data--value {
-  width: 400px;
+  width: 500px;
 }
 
 .speciesData {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  align-content: space-around;
-  // border: black 1px solid;
+  align-items: flex-start;
+}
 
   .speciesData__section {
+    flex-grow: 1;
     margin: 10px;
     padding: 10px;
-    // border: 1px red solid;
     max-width: 600px;
-    background-color: $light-grey;
+    background-color: #878E88;
   }
-}
+
+  .speciesData__section--ecology {
+    background-color: #6AAAA2;
+  }
+  .speciesData__section--physiology {
+    background-color: #F67A61;
+  }
+  .speciesData__section--lifehistory {
+    background-color: #F7CB15;
+  }
+  .speciesData__section--geography {
+    background-color: #76BED0;
+  }
+
+  .dataCard {
+    border: black 1px solid;
+    margin: 20px;
+  }
+
+  .dataItem {
+        background-color: #76BED0;
+
+  }
+
+  

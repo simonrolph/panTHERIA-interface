@@ -1,12 +1,6 @@
 ### To do
 
-Design - components
-
-- [ ] Header
-- [ ] Breadcrumb?
-- [ ] Footer
-- [ ] Home (Orders list)
-- [ ] Families list
-- [ ] Genera list
-- [ ] Species list
-- [ ] Individual species page
+Individual Species pages
+[] Create card layout 
+[] API call for images?
+[] API call for IUCN status https://apiv3.iucnredlist.org/api/v3/docs

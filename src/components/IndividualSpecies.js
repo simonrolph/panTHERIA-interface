@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from './Navigation';
 import Breadcrumb from './Breadcrumb';
+import DataCard from './DataCard';
 
 class IndividualSpecies extends Component {
   state = {
@@ -39,26 +40,31 @@ class IndividualSpecies extends Component {
           <h1>
             <i>{species}</i>
           </h1>
-          <div className='speciesData'>
-            {Object.keys(ecologyData).length !== 0 && <div className='speciesData__section'>     
+          <DataCard data={ecologyData} title="Ecology"/>
+          <DataCard data={physiologyData} title="Physiology"/>
+          <DataCard data={lifeHistoryData} title="Life History"/>
+          <DataCard data={geographyData} title="Geography"/>
+          <DataCard data={unknownData} title="Unrecorded Data"/>
+          {/* <div className='speciesData'>
+            {Object.keys(ecologyData).length !== 0 && <div className='speciesData__section speciesData__section--ecology'>     
               <h2>Ecology</h2>     
               <table>
                 <tbody>{this.createTable(ecologyData)}</tbody>
               </table>
             </div> }
-            { Object.keys(physiologyData).length !== 0 && <div className='speciesData__section'>          
+            { Object.keys(physiologyData).length !== 0 && <div className='speciesData__section speciesData__section--physiology'>          
               <h2>Physiology</h2>     
               <table>
                 <tbody>{this.createTable(physiologyData)}</tbody>
               </table>
             </div> }
-            { Object.keys(lifeHistoryData).length !== 0 && <div className='speciesData__section'>          
+            { Object.keys(lifeHistoryData).length !== 0 && <div className='speciesData__section speciesData__section--lifehistory'>          
               <h2>Life History</h2>     
               <table>
                 <tbody>{this.createTable(lifeHistoryData)}</tbody>
               </table>
             </div> }
-            { Object.keys(geographyData).length !== 0 && <div className='speciesData__section'>          
+            { Object.keys(geographyData).length !== 0 && <div className='speciesData__section speciesData__section--geography'>          
               <h2>Geography</h2>     
               <table>
                 <tbody>{this.createTable(geographyData)}</tbody>
@@ -70,7 +76,8 @@ class IndividualSpecies extends Component {
                 <tbody>{this.createTable(unknownData)}</tbody>
               </table>
             </div> }
-          </div>
+          </div> */}
+
         </div>
       </React.Fragment>
     );
@@ -80,7 +87,7 @@ class IndividualSpecies extends Component {
     let speciesData = data;
     let table = [];
     for (let key in speciesData) {
-      if (speciesData[key] === 'Unknown') {
+      if (speciesData[key] === 'Unknown' || speciesData[key] === undefined) {
         table.push(
         <tr className='dataTable__row' key={key}>
           <td className='dataTable__data--key'>{key}</td>
@@ -99,6 +106,7 @@ class IndividualSpecies extends Component {
     }
     return table;
   };
+
 
   componentDidMount() {
     this.getThatData();
@@ -217,10 +225,7 @@ class IndividualSpecies extends Component {
       for (let i = 0; i < semanticallySorted[tag].length; i++) {
         for (let key in speciesDataObj) {
           if (semanticallySorted[tag][i] === key) {
-            console.log(semanticallySorted[tag][i])
-            console.log(speciesDataObj[key])
             if (speciesDataObj[key] === -999) {
-              // console.log('its unknown!')
               unknownData[key] = 'Unknown';
             } else {
             switch (tag) {
