@@ -48,13 +48,42 @@ table {
   }
 
   .dataCard {
+    max-width: 1200rem;
     border: black 1px solid;
     margin: 20px;
   }
 
-  .dataItem {
-        background-color: #76BED0;
+  .dataCard__title__container {
+    padding-bottom: 0.5rem;
+    border-bottom: black solid 3px;
+  }
+
+  .dataCard__title {
+    text-align: left;
+    margin: 1rem;
+  }
+
+  .dataCard__dataItems {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 
   }
 
+  .dataItem {
+    // flex-grow: 1;
+    margin: 0.2rem 1rem;
+    text-align: left;
+    min-width: 25rem;
+}
+
+.dataItem--text {
+  order: 1;
+
+}
+
+
+.dataItem--number {
+  order: 99;
+}
   
