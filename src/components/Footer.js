@@ -14,17 +14,6 @@ const Footer = () => {
         <p className="footer-container__credit">
           This application was created by{" "}
           <a
-            href="http://simon-rolph.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Simon Rolph
-          </a>{" "}
-          <span role="img" aria-label="tram emoji">
-            🚋
-          </span>{" "}
-          &{" "}
-          <a
             href="https://natalieclamp.com/"
             target="_blank"
             rel="noopener noreferrer"
@@ -34,6 +23,17 @@ const Footer = () => {
           <span role="img" aria-label="dinosaur emoji">
             🦕
           </span>
+          &{" "}
+          <a
+            href="http://simon-rolph.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Simon Rolph
+          </a>{" "}
+          <span role="img" aria-label="tram emoji">
+            🚋
+          </span>{" "}
         </p>
       </div>
     </footer>
