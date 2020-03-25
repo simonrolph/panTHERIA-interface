@@ -39,43 +39,20 @@ class IndividualSpecies extends Component {
           species={species}
         />
         <div className='content-container'>
-          <h1>
-            <i>{species}</i>
-          </h1>
-          <DataCard data={ecologyData} title="Ecology"/>
-          <DataCard data={physiologyData} title="Physiology"/>
-          <DataCard data={lifeHistoryData} title="Life History"/>
-          <DataCard data={geographyData} title="Geography"/>
-          <DataCard data={unknownData} title="Unrecorded Data" showUnknown={showUnknown} toggle={this.toggleUnrecordedData}/>
-
+          <div className='content-container--inner'>
+            <h1>
+              <i>{species}</i>
+            </h1>
+            <DataCard data={ecologyData} title="Ecology"/>
+            <DataCard data={physiologyData} title="Physiology"/>
+            <DataCard data={lifeHistoryData} title="Life History"/>
+            <DataCard data={geographyData} title="Geography"/>
+            <DataCard data={unknownData} title="Unrecorded Data" showUnknown={showUnknown} toggle={this.toggleUnrecordedData}/>
+          </div>
         </div>
       </React.Fragment>
     );
   }
-
-  // createTable = data => {
-  //   let speciesData = data;
-  //   let table = [];
-  //   for (let key in speciesData) {
-  //     if (speciesData[key] === 'Unknown' || speciesData[key] === undefined) {
-  //       table.push(
-  //       <tr className='dataTable__row' key={key}>
-  //         <td className='dataTable__data--key'>{key}</td>
-  //       </tr>,
-  //     );
-  //     } else {
-  //     table.push(
-  //       <tr className='dataTable__row' key={key}>
-  //         <td className='dataTable__data--key'>{key}</td>
-  //         <td className='dataTable__data--value'>
-  //           {speciesData[key]}{' '}
-  //         </td>
-  //       </tr>,
-  //     );
-  //     }
-  //   }
-  //   return table;
-  // };
 
   toggleUnrecordedData = () => {
     this.setState(prevState => ({
@@ -121,7 +98,6 @@ class IndividualSpecies extends Component {
       species: convertedBinomial,
       references: references,
     });
-    // this.createTable();
   };
 
   semanticSplit = data => {

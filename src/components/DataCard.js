@@ -13,12 +13,14 @@ const DataCard = (props) => {
   })
 
   return ( 
-    <article className="dataCard">
-      <h2 onClick={title === 'Unrecorded Data' ? toggle : null}>
-        <div className="dataCard__title__container">
-          {title}
-        </div>
-      </h2>
+    dataItems.length > 0 && <article className={title === 'Unrecorded Data' ? "dataCard dataCard--unrecorded" : "dataCard"}>
+      <div className={title === 'Unrecorded Data' ? "dataCard__title__container dataCard__title__container--unrecorded" : "dataCard__title__container"} onClick={title === 'Unrecorded Data' ? toggle : null}>
+        <h2>
+            {title === 'Unrecorded Data' && !showUnknown && <div className="arrow arrow-right"></div>}
+            {title === 'Unrecorded Data' && showUnknown && <div className="arrow"></div>}
+            {title}
+        </h2>
+      </div>
       {title !== 'Unrecorded Data' && <div className="dataCard__dataItems">{dataItems}</div>}
       {showUnknown && <div className="dataCard__dataItems">{dataItems}</div>}
     </article>
