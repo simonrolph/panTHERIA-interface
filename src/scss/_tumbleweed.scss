@@ -1,0 +1,50 @@
+// Based on an animation by Aidan Breen https://codepen.io/aido179-1471800764/pen/jZJjpo
+
+.tumbleweed-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  padding: 2rem;
+
+  p {
+    font-size: 1.5em;
+  }
+}
+
+.animation-container{
+  margin: 2rem auto;
+  position: relative;
+  display: block;
+  height:80px;
+  width:80px;
+  border-bottom: solid 2px #333;
+  overflow:hidden;
+}
+.bounce{
+  background-image: url('../img/tumbleweed.png');
+  display: inline-block;
+  position:absolute;
+  bottom:0;
+  left:50%;
+  width:40px;
+  height:40px;
+  margin-left: -20px;
+  background-size: contain;
+  animation: bounceAnim 1s cubic-bezier(.63,.09,.75,.46) infinite alternate,
+            spinAnim 3s linear infinite;
+}
+
+@keyframes bounceAnim{
+  0%, 10% { bottom: 50%; }
+
+  100% { bottom: 0%; }
+}
+@keyframes spinAnim{
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

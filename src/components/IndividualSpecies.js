@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Navigation from './Navigation';
 import Breadcrumb from './Breadcrumb';
 import DataCard from './DataCard';
+import Tumbleweed from './Tumbleweed';
+import { getIUCNstatus, getiNaturalistPhotos } from '../lib/utils';
 
 class IndividualSpecies extends Component {
   state = {
@@ -14,6 +16,7 @@ class IndividualSpecies extends Component {
     species: '',
     references: '',
     showUnknown: false,
+    picURL: ''
   };
   render() {
     const {
@@ -25,6 +28,7 @@ class IndividualSpecies extends Component {
       geographyData,
       unknownData,
       showUnknown,
+      picURL,
     } = this.state;
     const { order_name, family_name, genus_name, binomial } = this.props;
     return (
@@ -43,11 +47,14 @@ class IndividualSpecies extends Component {
             <h1>
               <i>{species}</i>
             </h1>
+            <img src={picURL} alt={binomial} />
             <DataCard data={ecologyData} title="Ecology"/>
             <DataCard data={physiologyData} title="Physiology"/>
             <DataCard data={lifeHistoryData} title="Life History"/>
             <DataCard data={geographyData} title="Geography"/>
+            {this.noData(ecologyData, physiologyData, lifeHistoryData, geographyData) && <Tumbleweed />}
             <DataCard data={unknownData} title="Unrecorded Data" showUnknown={showUnknown} toggle={this.toggleUnrecordedData}/>
+          
           </div>
         </div>
       </React.Fragment>
@@ -60,9 +67,13 @@ class IndividualSpecies extends Component {
     }))
   }
 
+  noData = (ecologyData, physiologyData, lifeHistoryData, geographyData) => {
+    return (Object.keys(ecologyData).length === 0 && Object.keys(physiologyData).length === 0 && Object.keys(lifeHistoryData).length === 0 && Object.keys(geographyData).length === 0);
+  }
 
   componentDidMount() {
     this.getThatData();
+    this.getOtherData(this.props.binomial);
   }
 
   getThatData = () => {
@@ -99,6 +110,13 @@ class IndividualSpecies extends Component {
       references: references,
     });
   };
+
+  getOtherData = (binomial) => {
+    let species = binomial.replace("_", "%20")
+    getiNaturalistPhotos(species).then(picURL => this.setState({
+      picURL
+    }))
+  }
 
   semanticSplit = data => {
     const speciesDataObj = data[0];
