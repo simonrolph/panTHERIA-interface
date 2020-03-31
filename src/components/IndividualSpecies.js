@@ -3,7 +3,7 @@ import Navigation from './Navigation';
 import Breadcrumb from './Breadcrumb';
 import DataCard from './DataCard';
 import Tumbleweed from './Tumbleweed';
-import { getIUCNstatus, getiNaturalistPhotos } from '../lib/utils';
+import { getiNaturalistData } from '../lib/utils';
 
 class IndividualSpecies extends Component {
   state = {
@@ -16,7 +16,8 @@ class IndividualSpecies extends Component {
     species: '',
     references: '',
     showUnknown: false,
-    picURL: ''
+    image: null,
+    commonName: '',
   };
   render() {
     const {
@@ -28,7 +29,8 @@ class IndividualSpecies extends Component {
       geographyData,
       unknownData,
       showUnknown,
-      picURL,
+      image,
+      commonName,
     } = this.state;
     const { order_name, family_name, genus_name, binomial } = this.props;
     return (
@@ -44,10 +46,13 @@ class IndividualSpecies extends Component {
         />
         <div className='content-container'>
           <div className='content-container--inner'>
-            <h1>
-              <i>{species}</i>
-            </h1>
-            <img src={picURL} alt={binomial} />
+            <section className="speciesIdBlock">
+              {image && <img src={image} alt={binomial} />}
+              <h1>
+                <i>{species}</i>
+                <span>{commonName}</span>
+              </h1>
+            </section>
             <DataCard data={ecologyData} title="Ecology"/>
             <DataCard data={physiologyData} title="Physiology"/>
             <DataCard data={lifeHistoryData} title="Life History"/>
@@ -113,10 +118,14 @@ class IndividualSpecies extends Component {
 
   getOtherData = (binomial) => {
     let species = binomial.replace("_", "%20")
-    getiNaturalistPhotos(species).then(picURL => this.setState({
-      picURL
-    }))
-  }
+    getiNaturalistData(species).then(result => {
+      const { image, commonName } = result
+        this.setState({
+          image,
+          commonName
+        })
+      });
+      }
 
   semanticSplit = data => {
     const speciesDataObj = data[0];
