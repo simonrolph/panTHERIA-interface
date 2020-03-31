@@ -1,0 +1,43 @@
+.speciesIdBlock {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: 5px 7px 6px rgba($mid-grey, 0.5);
+  border-radius: 2px;
+  border-left: 5px solid $red;
+  @media (max-width: 1200px) {
+    margin: 2rem;
+  }
+
+  img {
+    max-width: 300px;
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  h1 {
+    flex-grow: 1;
+    text-align: left;
+    margin: 1rem;
+    padding-left: 1rem;
+    font-size: 64px;
+    font-style: italic;
+
+    span {
+      display: block;
+      margin-top: 1rem;
+      font-size: 24px;
+      font-weight: normal;
+      font-style: normal;
+
+    }
+  }
+}
+
+.loading {
+    max-width: 300px;
+    margin: 1rem;
+    padding: 1rem;
+}

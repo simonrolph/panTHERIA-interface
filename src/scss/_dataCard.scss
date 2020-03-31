@@ -1,7 +1,28 @@
 .dataCard {
     max-width: 1200rem;
-    border: black 1px solid;
-    margin: 20px;
+    border-left: 5px solid $red;
+    background-color: white;
+    border-radius: 2px;
+    margin: 2rem 0;
+    padding: 1rem;
+    box-shadow: 5px 7px 6px rgba($mid-grey, 0.5);
+
+    &:nth-child(2) {
+      border-color: $navy;
+    }
+    &:nth-child(3) {
+      border-color: $yellow;
+    }
+    &:nth-child(4) {
+      border-color: $teal;
+    }
+    &:nth-child(5) {
+      border-color: $darkGreen;
+    }
+
+    @media (max-width: 1200px) {
+      margin: 2rem;
+    }
 
     h2 {
       text-align: left;
@@ -10,7 +31,6 @@
 }
 
 .dataCard__title__container--unrecorded { 
-
     h2 {
       margin: 0;
       padding: 1rem;
@@ -21,9 +41,13 @@
     }
 }
   .dataCard__title__container {
-    border-bottom: black solid 3px;
     height: 100%;
     width: 100%;
+
+    h2 {
+      margin: 0;
+      padding: 1rem;
+    }
   }
 
   .dataCard__dataItems {
@@ -34,7 +58,7 @@
 
 
   .dataItem {
-    margin: 1rem;
+    padding: 1rem;
     text-align: left;
     min-width: 25rem;
 
