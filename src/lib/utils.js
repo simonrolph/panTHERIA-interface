@@ -9,8 +9,13 @@ exports.getIUCNstatus = (endpoint) => {
 
 exports.getiNaturalistData = (speciesBinomial) => {
   return axios.get(`${iNaturalistBaseURL}taxa?q=${speciesBinomial}`).then((result) => {
-    let image = result.data.results[0].default_photo ? result.data.results[0].default_photo.medium_url : null;
-    let commonName = result.data.results[0].preferred_common_name;
-    return { image, commonName }
+    let records = result.data.results;
+    if (records.length) {
+      let image = records[0].default_photo ? records[0].default_photo.medium_url : null;
+      let commonName = records[0].preferred_common_name;
+    return { image, commonName };
+    } else {
+      return;
+    }
   })
 }

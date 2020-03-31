@@ -16,6 +16,7 @@ class IndividualSpecies extends Component {
     species: '',
     references: '',
     showUnknown: false,
+    isLoading: true,
     image: null,
     commonName: '',
   };
@@ -29,6 +30,7 @@ class IndividualSpecies extends Component {
       geographyData,
       unknownData,
       showUnknown,
+      isLoading,
       image,
       commonName,
     } = this.state;
@@ -47,10 +49,10 @@ class IndividualSpecies extends Component {
         <div className='content-container'>
           <div className='content-container--inner'>
             <section className="speciesIdBlock">
-              {image && <img src={image} alt={binomial} />}
+              {isLoading ? <div className="loading"></div> : ( image && <img src={image} alt={binomial} />)}
               <h1>
-                <i>{species}</i>
-                <span>{commonName}</span>
+                {species}
+                {commonName && <span>{commonName}</span>}
               </h1>
             </section>
             <DataCard data={ecologyData} title="Ecology"/>
@@ -119,13 +121,20 @@ class IndividualSpecies extends Component {
   getOtherData = (binomial) => {
     let species = binomial.replace("_", "%20")
     getiNaturalistData(species).then(result => {
-      const { image, commonName } = result
+      if (result) {
+        const { image, commonName } = result
+          this.setState({
+            isLoading: false,
+            image,
+            commonName
+          })
+      } else {
         this.setState({
-          image,
-          commonName
+          isLoading: false,
         })
-      });
       }
+    });
+  }
 
   semanticSplit = data => {
     const speciesDataObj = data[0];
