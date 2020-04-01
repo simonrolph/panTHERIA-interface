@@ -7,12 +7,14 @@
   box-shadow: 5px 7px 6px rgba($mid-grey, 0.5);
   border-radius: 2px;
   border-left: 5px solid $red;
+  min-height: 300px;
   @media (max-width: 1200px) {
     margin: 2rem;
   }
 
   img {
-    max-width: 300px;
+    max-width: 290px;
+    max-height: 290px;
     margin: 1rem;
     padding: 1rem;
   }
@@ -37,7 +39,8 @@
 }
 
 .loading {
-    max-width: 300px;
+    max-width: 290px;
+    max-height: 290px;
     margin: 1rem;
     padding: 1rem;
 }
